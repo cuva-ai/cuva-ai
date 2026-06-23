@@ -1,7 +1,7 @@
 {
   "name": "CUVA AI",
   "short_name": "CUVA",
-  "description": "The hive mind for AI builders — komunitas berbagi proyek, diskusi, dan tanya-jawab AI.",
+  "description": "The hive mind for AI builders — share projects, discuss ideas, and ask questions about AI.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#07070a",
