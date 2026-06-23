@@ -1,0 +1,15 @@
+{
+  "name": "cuva-ai",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CUVA AI — the hive mind for AI builders.",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js",
+    "reseed": "node tools/reseed-local.js",
+    "reseed:supabase": "node tools/reseed-supabase.js"
+  },
+  "engines": {
+    "node": "22.x"
+  }
+}

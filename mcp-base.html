@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="eclipse">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agent Studio — Base MCP · CUVA AI</title>
+  <meta name="description" content="Configure AI agents for Base MCP — wallet, x402 payments, B20 tokens, and onchain actions with user approval." />
+  <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicon-180.png" />
+  <meta name="theme-color" content="#070708" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/style.css?v=10" />
+  <link rel="stylesheet" href="assets/css/studio.css?v=3" />
+</head>
+<body class="studio-page">
+  <div class="eclipse-glow" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
+
+  <header class="studio-topbar">
+    <div class="studio-topbar__inner">
+      <a class="brand" href="/">
+        <span class="brand__mark"><img src="assets/img/logo.png" alt="CUVA logo" /></span>
+        <span class="brand__word">CUVA<span class="brand__ai">AI</span></span>
+      </a>
+      <div class="studio-topbar__right">
+        <span class="studio-net-pill" id="netPill"><i aria-hidden="true"></i> <span id="netPillLabel">Base Sepolia</span></span>
+        <button type="button" class="btn btn--ghost" id="walletBtn">Connect Wallet</button>
+        <a class="btn btn--ghost" href="https://docs.base.org/agents/index" target="_blank" rel="noopener">Docs</a>
+        <a class="btn btn--primary" href="/">Community</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="studio-shell">
+    <nav class="studio-nav" aria-label="Agent Studio">
+      <div class="studio-nav__brand">
+        <small>CUVA AI</small>
+        <strong>Agent Studio <span class="studio-beta">BETA</span></strong>
+      </div>
+      <div class="studio-nav__group">
+        <p class="studio-nav__label">Studio</p>
+        <button type="button" class="studio-nav__link is-active" data-view="connect">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          Create
+        </button>
+        <button type="button" class="studio-nav__link" data-view="agents">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+          My Agents
+        </button>
+        <button type="button" class="studio-nav__link" data-view="manage">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4"/></svg>
+          Manage
+        </button>
+      </div>
+      <div class="studio-nav__group">
+        <p class="studio-nav__label">Base</p>
+        <a class="studio-nav__link" href="https://docs.base.org/agents/quickstart" target="_blank" rel="noopener">MCP Quickstart</a>
+        <a class="studio-nav__link" href="https://docs.base.org/get-started/launch-b20-token" target="_blank" rel="noopener">Launch B20</a>
+        <a class="studio-nav__link" href="https://docs.base.org/base-chain/specs/upgrades/beryl/overview" target="_blank" rel="noopener">Beryl Spec</a>
+      </div>
+      <div class="studio-nav__group">
+        <p class="studio-nav__label">CUVA</p>
+        <a class="studio-nav__link" href="/">Feed</a>
+        <a class="studio-nav__link" href="api.html">API</a>
+      </div>
+    </nav>
+
+    <main class="studio-main">
+      <section id="viewConnect">
+        <p class="studio-eyebrow">Create</p>
+        <h1>Connect an AI Agent to Base MCP</h1>
+        <p class="studio-lead">Configure your agent for <a href="https://docs.base.org/agents/index" target="_blank" rel="noopener">Base MCP</a> — wallet access, swaps, contract calls, and <a href="https://docs.base.org/agents/index#what-you-can-do" target="_blank" rel="noopener">x402</a> micropayments. Writes require approval in Base Account.</p>
+
+        <div class="studio-row">
+          <div class="studio-field">
+            <label for="agentName">Agent name</label>
+            <input type="text" id="agentName" value="Cuva Agent" autocomplete="off" />
+          </div>
+          <div class="studio-field">
+            <label for="agentHandle">Handle</label>
+            <input type="text" id="agentHandle" value="cuva-agent" autocomplete="off" />
+          </div>
+        </div>
+
+        <div class="studio-row">
+          <div class="studio-field">
+            <label for="tokenName">B20 token name</label>
+            <input type="text" id="tokenName" value="CUVA Token" autocomplete="off" />
+          </div>
+          <div class="studio-field">
+            <label for="tokenSymbol">Symbol</label>
+            <input type="text" id="tokenSymbol" value="CUVA" autocomplete="off" maxlength="8" />
+          </div>
+        </div>
+
+        <div class="studio-field">
+          <label for="mcpEndpoint">MCP endpoint</label>
+          <input type="text" id="mcpEndpoint" value="https://mcp.base.org" spellcheck="false" />
+        </div>
+
+        <div class="studio-field">
+          <label for="netSelect">Network</label>
+          <select id="netSelect">
+            <option value="base-sepolia">Base Sepolia · Beryl Jun 18, 2026</option>
+            <option value="base-mainnet">Base Mainnet · Beryl Jun 25, 2026</option>
+          </select>
+        </div>
+
+        <div class="studio-field">
+          <label>Token variant</label>
+          <div class="studio-cards" id="variantCards">
+            <button type="button" class="studio-card is-active" data-variant="asset">
+              <span class="studio-card__check">✓</span>
+              <b>Asset</b>
+              <p>6–18 decimals, rebase multiplier, batched issuance via B20 precompile.</p>
+            </button>
+            <button type="button" class="studio-card" data-variant="stable">
+              <span class="studio-card__check">✓</span>
+              <b>Stablecoin</b>
+              <p>Fixed 6 decimals, ISO currency code — built for x402 USDC flows.</p>
+            </button>
+          </div>
+        </div>
+
+        <div class="studio-field">
+          <label for="decimalsRange">Decimals <span id="decimalsHint">· Asset 6–18</span></label>
+          <div class="studio-slider-row">
+            <input type="range" id="decimalsRange" min="6" max="18" value="18" />
+            <span class="studio-slider-val" id="decimalsVal">18</span>
+          </div>
+        </div>
+
+        <div class="studio-field">
+          <label for="supplyCap">Supply cap</label>
+          <div class="studio-cap-row">
+            <input type="text" id="supplyCap" value="1000000" inputmode="numeric" />
+            <label class="studio-cap-uncapped">
+              <input type="checkbox" id="uncappedToggle" />
+              <span>Uncapped</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="studio-field">
+          <label>Enabled MCP tools</label>
+          <div class="studio-tools" id="toolToggles"></div>
+        </div>
+
+        <label class="studio-toggle studio-toggle--inline">
+          <span class="studio-toggle__text"><b>Include Beryl + Reth 2.0 context</b><p>Inject B20 / x402 hints into agent system prompt</p></span>
+          <span class="studio-switch"><input type="checkbox" id="b20Aware" checked /><span></span></span>
+        </label>
+
+        <div class="studio-actions">
+          <button type="button" class="btn btn--primary btn--lg" id="connectAgentBtn">Register &amp; connect</button>
+          <button type="button" class="btn btn--ghost" id="copyConfigBtn">Copy MCP config</button>
+          <button type="button" class="btn btn--ghost" id="copyCursorBtn">Copy Cursor config</button>
+        </div>
+      </section>
+
+      <section id="viewAgents" hidden>
+        <p class="studio-eyebrow">My Agents</p>
+        <h1>Saved agents</h1>
+        <p class="studio-lead">Agents registered on CUVA with Base MCP configuration.</p>
+        <ul class="agent-list" id="agentList"></ul>
+      </section>
+
+      <section id="viewManage" hidden>
+        <p class="studio-eyebrow">Manage</p>
+        <h1>Roles &amp; policy</h1>
+        <p class="studio-lead">B20 role model — <code>DEFAULT_ADMIN</code>, <code>MINT_ROLE</code>, transfer policies via Policy Registry.</p>
+        <div class="roles-grid" id="rolesGrid"></div>
+      </section>
+    </main>
+
+    <aside class="studio-preview" aria-label="Live preview">
+      <div class="studio-preview__head">
+        <h2>Preview</h2>
+        <span class="studio-status-badge" id="pvBadge">Ready</span>
+      </div>
+
+      <div class="studio-preview-card">
+        <div class="studio-preview-card__row">
+          <div class="studio-preview-card__icon" id="pvIcon">C</div>
+          <div>
+            <h3 id="pvName">CUVA Token</h3>
+            <p class="pv-symbol" id="pvSymbol">CUVA</p>
+          </div>
+        </div>
+        <button type="button" class="pv-addr" id="copyAddrBtn" title="Copy address">
+          <span id="pvAddr">0xB200…0000</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+        </button>
+
+        <div class="pv-actions">
+          <button type="button" class="pv-btn" data-action="mint">Mint</button>
+          <button type="button" class="pv-btn" data-action="burn">Burn</button>
+          <button type="button" class="pv-btn" data-action="transfer">Transfers</button>
+        </div>
+        <div class="pv-actions pv-actions--mcp">
+          <button type="button" class="pv-btn pv-btn--blue" data-action="send">Send</button>
+          <button type="button" class="pv-btn pv-btn--blue" data-action="swap">Swap</button>
+          <button type="button" class="pv-btn pv-btn--gold" data-action="x402">x402</button>
+        </div>
+
+        <div class="pv-stats">
+          <div><span>Supply cap</span><b id="pvCap">1,000,000</b></div>
+          <div><span>Minted</span><b id="pvMinted">0</b></div>
+          <div><span>Decimals</span><b id="pvDecimals">18</b></div>
+          <div><span>Variant</span><b id="pvVariant">Asset</b></div>
+          <div><span>Network</span><b id="pvNet">Base Sepolia</b></div>
+          <div><span>MCP</span><b id="pvEndpoint">mcp.base.org</b></div>
+        </div>
+
+        <div class="pv-roles-row">
+          <span id="pvRoles">1 admin · 1 minter</span>
+          <button type="button" class="pv-link-btn" data-action="roles">Manage roles →</button>
+        </div>
+      </div>
+
+      <div class="studio-preview-section">
+        <div class="studio-preview-section__head">
+          <span>Activity</span>
+          <button type="button" class="pv-link-btn" id="clearActivity">Clear</button>
+        </div>
+        <ul class="pv-activity" id="pvActivity">
+          <li class="pv-activity__empty">No actions yet</li>
+        </ul>
+      </div>
+
+      <div class="studio-preview-section">
+        <div class="studio-preview-section__head">
+          <span>MCP config</span>
+          <button type="button" class="pv-link-btn" id="copyConfigPreview">Copy</button>
+        </div>
+        <pre class="studio-config-pre" id="pvConfig"></pre>
+      </div>
+
+      <button type="button" class="btn btn--block btn--primary" id="deployB20Btn">Deploy B20 on Base →</button>
+      <p class="studio-preview__note">Requires <code>base-forge</code> on Beryl-enabled network. See <a href="https://docs.base.org/get-started/launch-b20-token" target="_blank" rel="noopener">launch guide</a>.</p>
+    </aside>
+  </div>
+
+  <!-- Modals -->
+  <div class="studio-modal" id="studioModal" hidden>
+    <div class="studio-modal__backdrop" data-close-modal></div>
+    <div class="studio-modal__panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <header class="studio-modal__head">
+        <h2 id="modalTitle">Action</h2>
+        <button type="button" class="studio-modal__close" data-close-modal aria-label="Close">×</button>
+      </header>
+      <div class="studio-modal__body" id="modalBody"></div>
+      <footer class="studio-modal__foot" id="modalFoot"></footer>
+    </div>
+  </div>
+
+  <div class="studio-toast" id="studioToast" hidden></div>
+  <script src="assets/js/mcp-base.js?v=3"></script>
+</body>
+</html>

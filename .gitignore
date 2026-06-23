@@ -1,0 +1,10 @@
+server/cuva.db
+server/cuva.db-wal
+server/cuva.db-shm
+node_modules/
+.env
+.env.local
+.vercel
+
+.vercel
+.env*.local

@@ -1,0 +1,11 @@
+server/cuva.db
+server/cuva.db-wal
+server/cuva.db-shm
+.claude
+tools
+logo.jpg
+.git
+node_modules
+.env
+.env.local
+.vercel
